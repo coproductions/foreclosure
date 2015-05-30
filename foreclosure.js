@@ -70,11 +70,16 @@ function borrower (loan) {
 
 var stevesLoan = loan();
 var steve = borrower(stevesLoan);
-while (!(stevesLoan.isForeclosed())) {
+while (!(stevesLoan.isForeclosed() || stevesLoan.getBalance())) {
   steve.payDay();
   steve.makePayment();
   month++;
   console.log('hello')
+}
+if (stevesLoan.isForeclosed()) {
+  console.log('house was foreclosed')
+} else {
+  console.log('loan paid off')
 }
 
 monthsUntilEvicted = month;
